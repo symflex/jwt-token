@@ -1,0 +1,16 @@
+{
+  "name": "symflex/jwt-token-component",
+  "type": "library",
+  "license": "MIT",
+  "description": "Jwt token",
+  "require": {
+    "php": "^7.4"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Symflex\\Component\\Jwt\\": "src/"
+    }
+  }
+}
