@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Symflex\Component\Jwt\Token;
 
@@ -9,34 +10,42 @@ namespace Symflex\Component\Jwt\Token;
 class PayloadSection implements Payload
 {
     /**
-     * @var
+     * @var array
      */
-    private array $payload;
+    private array $data;
 
     /**
-     * @var
+     * @var string
      */
     private string $encoded;
 
     /**
      * PayloadSection constructor.
-     * @param array $payload
+     * @param array $data
      * @param string $encoded
      */
     public function __construct(
-        array $payload,
+        array $data,
         string $encoded
     ) {
-        $this->payload    = $payload;
+        $this->data    = $data;
         $this->encoded = $encoded;
     }
 
     /**
      * @return array
      */
-    public function payload(): array
+    public function data(): array
     {
-        return $this->payload;
+        return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function encoded(): string
+    {
+        return  $this->encoded;
     }
 
     /**

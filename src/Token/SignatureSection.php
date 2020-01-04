@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Symflex\Component\Jwt\Token;
 
@@ -11,7 +12,7 @@ class SignatureSection implements Signature
     /**
      * @var string
      */
-    private string $signature;
+    private string $data;
 
     /**
      * @var string
@@ -20,23 +21,31 @@ class SignatureSection implements Signature
 
     /**
      * SignatureSection constructor.
-     * @param string $signature
+     * @param string $data
      * @param string $encoded
      */
     public function __construct(
-        string $signature,
+        string $data,
         string $encoded
     ) {
-        $this->signature = $signature;
-        $this->encoded   = $encoded;
+        $this->data    = $data;
+        $this->encoded = $encoded;
     }
 
     /**
      * @return string
      */
-    public function signature(): string
+    public function data(): string
     {
-        return $this->signature;
+        return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function encoded(): string
+    {
+        return $this->encoded;
     }
 
     /**

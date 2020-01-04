@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Symflex\Component\Jwt\Token;
 
@@ -11,7 +12,7 @@ class HeaderSection implements Header
     /**
      * @var array
      */
-    private array $header;
+    private array $data;
 
     /**
      * @var string
@@ -20,23 +21,31 @@ class HeaderSection implements Header
 
     /**
      * HeaderSection constructor.
-     * @param array $header
+     * @param array $data
      * @param string $encoded
      */
     public function __construct(
-        array $header,
+        array $data,
         string $encoded
     ) {
-        $this->header = $header;
+        $this->data    = $data;
         $this->encoded = $encoded;
     }
 
     /**
      * @return array
      */
-    public function header(): array
+    public function data(): array
     {
-        return $this->header;
+        return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function encoded(): string
+    {
+        return  $this->encoded;
     }
 
     /**
