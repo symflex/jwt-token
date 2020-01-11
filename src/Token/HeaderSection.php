@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Symflex\Component\Jwt\Token;
 
+use Symflex\Component\Jwt\Token\Header\Algorithm;
+use Symflex\Component\Jwt\Token\Header\Type;
+
 /**
  * Class HeaderSection
  * @package Symflex\Component\Jwt\Token
@@ -10,9 +13,14 @@ namespace Symflex\Component\Jwt\Token;
 class HeaderSection implements Header
 {
     /**
-     * @var array
+     * @var Algorithm
      */
-    private array $data;
+    private Algorithm $alg;
+
+    /**
+     * @var Type
+     */
+    private Type $typ;
 
     /**
      * @var string
@@ -21,15 +29,34 @@ class HeaderSection implements Header
 
     /**
      * HeaderSection constructor.
-     * @param array $data
+     * @param Type $typ
+     * @param Algorithm $alg
      * @param string $encoded
      */
     public function __construct(
-        array $data,
+        Type $typ,
+        Algorithm $alg,
         string $encoded
     ) {
-        $this->data    = $data;
+        $this->typ     = $typ;
+        $this->alg     = $alg;
         $this->encoded = $encoded;
+    }
+
+    /**
+     * @return Algorithm
+     */
+    public function alg(): Algorithm
+    {
+        return $this->alg;
+    }
+
+    /**
+     * @return Type
+     */
+    public function typ(): Type
+    {
+        return $this->typ;
     }
 
     /**
@@ -37,7 +64,10 @@ class HeaderSection implements Header
      */
     public function data(): array
     {
-        return $this->data;
+        return [
+            Type::KEY      => $this->typ->value(),
+            Algorithm::KEY => $this->alg->value()
+        ];
     }
 
     /**

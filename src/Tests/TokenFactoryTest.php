@@ -47,7 +47,6 @@ class TokenFactoryTest extends TestCase
 
     /**
      * @depends testConstructor
-     *
      */
     public function testBadDataHeader($tokenFactory)
     {
@@ -71,5 +70,12 @@ class TokenFactoryTest extends TestCase
     {
         $this->expectException(RuntimeException::class);
         $tokenFactory->createToken(self::HEADER_FIXTURE, self::PAYLOAD_FIXTURE, ['data' => []]);
+    }
+
+    protected function fixtures()
+    {
+        return [
+            'header' =>
+        ];
     }
 }

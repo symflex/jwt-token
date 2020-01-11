@@ -4,10 +4,13 @@
 
 ```php
 use Symflex\Component\Jwt\TokenFactory;
+use Symflex\Component\Jwt\Token\Header\Algorithm;
+use Symflex\Component\Jwt\Token\Header\Type;
 
 $header = [
     'data' => [
-        'key' => 'value'
+        Algorithm::KEY => new Rsa256(),
+        Type::KEY => new Jwt()
     ],
     'encoded' => 'base64 encoded json string'   
 ];
